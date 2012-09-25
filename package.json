@@ -1,0 +1,13 @@
+{
+  "name": "utf8-bom-checker",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "async": "0.1.22",
+    "coffee-script": "1.3.3"
+  },
+  "devDependencies": {
+    "mocha": "1.5.0"
+  },
+  "engine": "node >= 0.8"
+}
