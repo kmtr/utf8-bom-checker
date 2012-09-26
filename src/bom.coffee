@@ -32,8 +32,18 @@ check_dir = (dirpath, callback)->
       bomfiles = (hasBOM[0] for hasBOM in results when hasBOM[1])
       callback(bomfiles)
 
-main = (args)->
-  check_dir args[0], (bomfiles)-> console.log(bomfiles)
+main = (files)->
+  for filepath in files
+    do (filepath) ->
+      fs.stat (filepath), (err, stats)->
+        if err then return
+        if stats.isFile()
+          check_file filepath, (hasBOM)->
+            if hasBOM then console.log filepath
+        if stats.isDirectory()
+          check_dir filepath, (bomfiles)->
+            for bomfile in bomfiles
+              do (bomfile)-> console.log bomfile
 
 module.exports.check = check
 module.exports.check_file = check_file
